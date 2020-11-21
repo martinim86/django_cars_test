@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Cars List</h1>
+
+    {% if cars_list %}
+    <ul>
+
+      {% for cars in cars_list %}
+      <li>
+        <a href="{{ cars.get_absolute_url }}">{{ cars.name }}</a> ({{cars.date_on}})
+      </li>
+      <a class="btn btn-default" href="{% url 'cars_edit' pk=cars.pk %}"><span class="glyphicon glyphicon-pencil"> Редактировать</span></a>
+      <a class="btn btn-default" href="{% url 'cars_delete' pk=cars.pk %}"><span class="glyphicon glyphicon-minus"> Удалить</span></a>
+      {% endfor %}
+
+
+    </ul>
+    
+
+    {% else %}
+      <p>There are no books in the library.</p>
+
+    {% endif %}       
+     <a href="{% url 'cars_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span> Добавить</a>
+{% endblock %}
