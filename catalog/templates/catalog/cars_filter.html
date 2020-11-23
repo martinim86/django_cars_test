@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	{% for cars in  name_cars %}
+       {{ cars.name }}({{cars.date_on}})</br>
+    {% endfor %}
+
+
+
+    <h1>Cars filter </h1>
+
+    <form method = "POST" class = "cars-form"> {% csrf_token %}
+    	<!-- Start Date:{{ form.date_on }}<br/> -->
+    	<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+  			Start date {{ form.date_on }}
+  			<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+    			<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+  			</div>
+		</div>
+		<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+  			End Date:  {{ form.date_off }}
+  			<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+    			<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+  			</div>
+		</div>
+
+    	
+
+    	<button type = "submit" class = "save btn btn-default">Save</button>
+    </form>
+
+    	
+{% endblock %}

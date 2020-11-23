@@ -1,11 +1,19 @@
+
+
 {% extends "base_generic.html" %}
 
 {% block content %}
     <h1>New  Car </h1>
 
     <form method = "POST" class = "cars-form"> {% csrf_token %}
+    	<div class="input-group date" id="datepicker1" data-target-input="nearest">
+  			Start date {{ form.date_on }}
+  			<div class="input-group-append" data-target="#datepicker1" data-toggle="datepicker">
+    			<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+  			</div>
+		</div>
     	<input type="text" name="name">
-    	<input type="text" name="date_on">
+    	<!-- <input type="text" name="date_on"> -->
     	<button type = "submit" class = "save btn btn-default">Save</button>
     </form>
 

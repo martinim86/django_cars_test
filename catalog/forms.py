@@ -3,8 +3,27 @@ from .models import Cars
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 import datetime #for checking renewal date range.
+from functools import partial
+
+
+DateInput = partial(forms.DateInput, {'class': 'datepicker'})
     
 class CarsForm(forms.ModelForm):
+    date_on = forms.DateField(
+        input_formats=['%Y/%m/%d'],
+        widget=forms.DateInput(attrs={
+            'class': 'form-control datepicker-input',
+            'data-target': '#datepicker1'
+        })
+    )
+    date_off = forms.DateField(
+        input_formats=['%d/%m/%Y'],
+        widget=forms.DateInput(attrs={
+            'class': 'form-control datepicker-input',
+            'data-target': '#datepicker2'
+        })
+    )
+    # date_off = forms.DateField(widget=DateInput())
     class Meta:
         model = Cars
         fields = ('name', 'date_on')
