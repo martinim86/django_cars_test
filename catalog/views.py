@@ -37,7 +37,7 @@ def cars_filter(request):
     
     if request.method == "POST":
         
-        name_cars=Cars.objects.all()
+        # name_cars=Cars.objects.all()
         form = CarsForm(request.POST)
         # d_on = request.POST['date_on']
         # d_off = request.POST['date_off']
@@ -45,8 +45,8 @@ def cars_filter(request):
         # d_off2 = DateFormat(d_off)
         # d_on1.format('Y-m-d')
         # df2.format('Y-m-d')
-        n = Cars.objects.filter(date_on__isnull=True, date_on__range=(request.POST['date_on'], request.POST['date_off']))
-        print(n)
+        name_cars = Cars.objects.filter(date_on__isnull=True, date_on__range=(request.POST['date_on'], request.POST['date_off']))
+
         # cars = CarsForm(request.POST)
         # cars.date_on = timezone.now()
         # cars.name =  request.user
@@ -54,7 +54,11 @@ def cars_filter(request):
         # cars.save()
 
         # return HttpResponseRedirect(reverse('cars') )
-        # # return redirect ('catalog/cars_edit.html', pk=post.pk)
+        return render(
+        request,
+        'catalog/cars_filter.html',
+        context={'form':form, 'name_cars':name_cars},
+        )
     else:
         name_cars=Cars.objects.all()
         form = CarsForm()
@@ -71,10 +75,10 @@ from django.urls import reverse
 import datetime
 def cars_new(request):
     if request.method == "POST":
-        cars = CarsForm(request.POST)
-        print (request.POST['date_on'])
+        form = CarsForm(request.POST)
+        cars = form.save(commit=False)
         # cars.date_on = request.POST['date_on']
-        # cars.name =  request.POST['name']
+        # cars.name = request.user
 
         cars.save()
 

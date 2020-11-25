@@ -6,9 +6,15 @@
     <h1>New  Car </h1>
 
     <form method = "POST" class = "cars-form"> {% csrf_token %}
-    	<div class="input-group date" id="datepicker1" data-target-input="nearest">
+    	<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
   			Start date {{ form.date_on }}
-  			<div class="input-group-append" data-target="#datepicker1" data-toggle="datepicker">
+  			<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+    			<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+  			</div>
+		</div>
+		<div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+  			Start date {{ form.date_off}}
+  			<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
     			<div class="input-group-text"><i class="fa fa-calendar"></i></div>
   			</div>
 		</div>
